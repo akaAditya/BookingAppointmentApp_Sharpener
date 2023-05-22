@@ -14,10 +14,21 @@ function getCall(){
     // document.writeln("Date of Appointment: "+ date+"<br>");
     // document.writeln("Timings: "+ time+"<br>");
 
-    localStorage.setItem('UserName', name);
-    localStorage.setItem('Email', email);
-    localStorage.setItem('Phone', phone);
-    localStorage.setItem('Date', date);
-    localStorage.setItem('Time', time);
+    // localStorage.setItem('UserName', name);
+    // localStorage.setItem('Email', email);
+    // localStorage.setItem('Phone', phone);
+    // localStorage.setItem('Date', date);
+    // localStorage.setItem('Time', time);
     // localStorage.getItem(key);
+    let myObj = {
+        Username : name,
+        Email : email,
+        Phone : phone,
+        Date : date,
+        Time : time
+    }
+    let myObj_str = {};
+    myObj_str = JSON.stringify(myObj);
+    localStorage.setItem('myObj', myObj_str)
+    localStorage.getItem('myObj')
 }
