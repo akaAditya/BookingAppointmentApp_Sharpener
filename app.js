@@ -1,6 +1,6 @@
 
-
 function getCall(){
+    // e.prevenyDefault();
     alert("Thank you for registeration, You will receive a call shortly");
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
@@ -27,8 +27,20 @@ function getCall(){
         Date : date,
         Time : time
     }
-    let myObj_str = {};
-    myObj_str = JSON.stringify(myObj);
-    localStorage.setItem('myObj', myObj_str)
-    localStorage.getItem('myObj')
+
+    let myObj_str = JSON.stringify(myObj);
+    localStorage.setItem(myObj.Email, myObj_str);
+
+    showUserOnScreen(myObj);
+}
+
+function showUserOnScreen(myObj){
+
+    let parentElem = document.getElementById("listofitems");
+    let childElem = document.createElement("li");
+    childElem.textContent = myObj.Username+ ' - ' + myObj.Email+ ' - '+myObj.Phone+ ' - '+myObj.Date+' - '+myObj.Time;
+    parentElem.appendChild(childElem);
+
+    // parentElement.innerHTML = `<li>${myObj.Username} - ${myObj.Email} - ${myObj.Phone} - ${myObj.Date} - ${myObj.Time}</li>`
+    // parentElement.appendChild
 }
