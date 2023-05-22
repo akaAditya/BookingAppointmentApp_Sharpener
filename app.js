@@ -2,7 +2,7 @@
 function getCall(){
     // e.prevenyDefault();
     alert("Thank you for registeration, You will receive a call shortly");
-    let name = document.getElementById("name").value;
+    let username = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let phone = document.getElementById("phone").value;
     let date = document.getElementById("date").value;
@@ -21,7 +21,7 @@ function getCall(){
     // localStorage.setItem('Time', time);
     // localStorage.getItem(key);
     let myObj = {
-        Username : name,
+        Username : username,
         Email : email,
         Phone : phone,
         Date : date,
@@ -47,7 +47,23 @@ function showUserOnScreen(myObj){
         localStorage.removeItem(myObj.Email);
         parentElem.removeChild(childElem);
     }
+    const editButton = document.createElement('input');
+    editButton.type = 'button';
+    editButton.value = 'Edit';
+    editButton.onclick = () =>{
+        
+        localStorage.removeItem(myObj.Email);
+        parentElem.removeChild(childElem);
+        document.getElementById("name").value = myObj.Username;
+        document.getElementById("email").value = myObj.Email;
+        document.getElementById("phone").value = myObj.Phone;
+        document.getElementById("date").value = myObj.Date;
+        document.getElementById("time").value = myObj.Time;
+
+    }
+        
     childElem.appendChild(deleteBtn);
+    childElem.appendChild(editButton);
     parentElem.appendChild(childElem);
 
     // parentElement.innerHTML = `<li>${myObj.Username} - ${myObj.Email} - ${myObj.Phone} - ${myObj.Date} - ${myObj.Time}</li>`
