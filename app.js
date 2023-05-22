@@ -19,5 +19,5 @@ function getCall(){
     localStorage.setItem('Phone', phone);
     localStorage.setItem('Date', date);
     localStorage.setItem('Time', time);
-    localStorage.getItem(key);
+    // localStorage.getItem(key);
 }
