@@ -31,29 +31,40 @@ function getCall(){
     // let myObj_str = JSON.stringify(myObj);
     // localStorage.setItem(myObj.Email, myObj_str);
 // POST data
-    axios.post('https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData', myObj)
+
+    axios.post('https://crudcrud.com/api/0440022b95ea47ee95060a7decbb82ca/appointmentData', myObj)
     .then((res)=>{console.log(res)}).catch((err)=>{console.log(err)});
 
     showUserOnScreen(myObj);
 }
 // GET data after reload
-
 window.onload = function(myObj){
-    axios.get('https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData', myObj)
+    axios.get('https://crudcrud.com/api/0440022b95ea47ee95060a7decbb82ca/appointmentData', myObj)
     .then((res)=>{
         for(let user=0; user<res.data.length; user++){
             showUserOnScreen(res.data[user]);
         }
         console.log(res.data)})
         .catch((err)=>{console.log(err)});
-}
-
+    }
+    // UPDATE request
+    
+    function updateEntry(){
+        axios({
+            method : 'put',
+            url : `https://crudcrud.com/api/0440022b95ea47ee95060a7decbb82ca/appointmentData/6480f3d3456f2b03e80bbf01`
+        }).then((res => {console.log(res.data)})).catch((err) => {console.log(err)
+        });
+    
+        // showUserOnScreen(myObj);
+    }
+    
 // DELETE request
-function deleteEntry(id) {
+function deleteEntry() {
     // console.log('DELETE Request');
   
     axios({
-        url : `https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData/6480e36d456f2b03e80bbec4`,
+        url : `https://crudcrud.com/api/0440022b95ea47ee95060a7decbb82ca/appointmentData/6480f3d3456f2b03e80bbf01`,
         method : 'delete'
     }).then((res => {console.log(res.data)})).catch((err) => {console.log(err)
     });
@@ -78,14 +89,16 @@ function showUserOnScreen(myObj){
     editButton.value = 'Edit';
     editButton.onclick = () =>{
         
-        localStorage.removeItem(myObj.Email);
+        // localStorage.removeItem(myObj.Email);
         parentElem.removeChild(childElem);
         document.getElementById("name").value = myObj.Username;
         document.getElementById("email").value = myObj.Email;
         document.getElementById("phone").value = myObj.Phone;
         document.getElementById("date").value = myObj.Date;
         document.getElementById("time").value = myObj.Time;
-
+        deleteEntry();
+        updateEntry();
+        
     }
         
     childElem.appendChild(deleteBtn);
