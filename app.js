@@ -48,6 +48,17 @@ window.onload = function(myObj){
         .catch((err)=>{console.log(err)});
 }
 
+// DELETE request
+function deleteEntry(id) {
+    // console.log('DELETE Request');
+  
+    axios({
+        url : `https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData/6480e36d456f2b03e80bbec4`,
+        method : 'delete'
+    }).then((res => {console.log(res.data)})).catch((err) => {console.log(err)
+    });
+  }
+
 function showUserOnScreen(myObj){
 
     let parentElem = document.getElementById("listofitems");
@@ -60,6 +71,7 @@ function showUserOnScreen(myObj){
     deleteBtn.onclick = () => {
         localStorage.removeItem(myObj.Email);
         parentElem.removeChild(childElem);
+        deleteEntry();
     }
     const editButton = document.createElement('input');
     editButton.type = 'button';
