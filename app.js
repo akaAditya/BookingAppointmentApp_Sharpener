@@ -28,10 +28,24 @@ function getCall(){
         Time : time
     }
 
-    let myObj_str = JSON.stringify(myObj);
-    localStorage.setItem(myObj.Email, myObj_str);
+    // let myObj_str = JSON.stringify(myObj);
+    // localStorage.setItem(myObj.Email, myObj_str);
+// POST data
+    axios.post('https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData', myObj)
+    .then((res)=>{console.log(res)}).catch((err)=>{console.log(err)});
 
     showUserOnScreen(myObj);
+}
+// GET data after reload
+
+window.onload = function(myObj){
+    axios.get('https://crudcrud.com/api/29a50cd1167f4fce8c967eba29212abd/appointmentData', myObj)
+    .then((res)=>{
+        for(let user=0; user<res.data.length; user++){
+            showUserOnScreen(res.data[user]);
+        }
+        console.log(res.data)})
+        .catch((err)=>{console.log(err)});
 }
 
 function showUserOnScreen(myObj){
